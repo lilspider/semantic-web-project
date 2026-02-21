@@ -8,8 +8,6 @@ The regular web is built for humans — we read pages, look at images, and under
 
 Think of it like this: a normal database knows that a restaurant has a "rating" of 4.8. The Semantic Web knows that 4.8 is a *rating*, that ratings belong to *restaurants*, that restaurants *employ* chefs, and that chefs *prepare* dishes. It understands the **relationships between things**, not just the values.
 
-The building block of the Semantic Web is the **ontology** — a structured vocabulary that defines what things exist in a domain and how they relate to each other.
-
 ---
 
 ## What is an Ontology?
@@ -47,7 +45,8 @@ The ontology is stored as an `.owl` file and loaded into a Python desktop applic
 
 ## Screenshot
 
-<!-- Add your screenshot here -->
+<img width="1905" height="973" alt="image" src="https://github.com/user-attachments/assets/5e346e74-7c34-4ccc-8904-1f226d441bf0" />
+
 
 ---
 
