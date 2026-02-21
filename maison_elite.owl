@@ -1,0 +1,731 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://maison-elite.org/ontology#"
+     xml:base="http://maison-elite.org/ontology"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:me="http://maison-elite.org/ontology#">
+
+    <owl:Ontology rdf:about="http://maison-elite.org/ontology">
+        <rdfs:label>Maison Élite Restaurant Ontology</rdfs:label>
+        <rdfs:comment>A fine-dining restaurant ontology covering dishes, chefs, menus, ingredients, reservations, customers, and awards.</rdfs:comment>
+    </owl:Ontology>
+
+
+    <!-- ═══════════════════════════════════════════════════════════
+         OBJECT PROPERTIES
+         ═══════════════════════════════════════════════════════════ -->
+
+    <!-- Restaurant employs Chef -->
+    <owl:ObjectProperty rdf:about="http://maison-elite.org/ontology#employs">
+        <rdfs:domain rdf:resource="http://maison-elite.org/ontology#Restaurant"/>
+        <rdfs:range  rdf:resource="http://maison-elite.org/ontology#Chef"/>
+    </owl:ObjectProperty>
+
+    <!-- Restaurant hasMenu Menu -->
+    <owl:ObjectProperty rdf:about="http://maison-elite.org/ontology#hasMenu">
+        <rdfs:domain rdf:resource="http://maison-elite.org/ontology#Restaurant"/>
+        <rdfs:range  rdf:resource="http://maison-elite.org/ontology#Menu"/>
+    </owl:ObjectProperty>
+
+    <!-- Restaurant receivedAward Award -->
+    <owl:ObjectProperty rdf:about="http://maison-elite.org/ontology#receivedAward">
+        <rdfs:domain rdf:resource="http://maison-elite.org/ontology#Restaurant"/>
+        <rdfs:range  rdf:resource="http://maison-elite.org/ontology#Award"/>
+    </owl:ObjectProperty>
+
+    <!-- Menu includes Dish -->
+    <owl:ObjectProperty rdf:about="http://maison-elite.org/ontology#includes">
+        <rdfs:domain rdf:resource="http://maison-elite.org/ontology#Menu"/>
+        <rdfs:range  rdf:resource="http://maison-elite.org/ontology#Dish"/>
+    </owl:ObjectProperty>
+
+    <!-- Dish preparedBy Chef -->
+    <owl:ObjectProperty rdf:about="http://maison-elite.org/ontology#preparedBy">
+        <rdfs:domain rdf:resource="http://maison-elite.org/ontology#Dish"/>
+        <rdfs:range  rdf:resource="http://maison-elite.org/ontology#Chef"/>
+    </owl:ObjectProperty>
+
+    <!-- Dish containsIngredient Ingredient -->
+    <owl:ObjectProperty rdf:about="http://maison-elite.org/ontology#containsIngredient">
+        <rdfs:domain rdf:resource="http://maison-elite.org/ontology#Dish"/>
+        <rdfs:range  rdf:resource="http://maison-elite.org/ontology#Ingredient"/>
+    </owl:ObjectProperty>
+
+    <!-- Customer hasReservation Reservation -->
+    <owl:ObjectProperty rdf:about="http://maison-elite.org/ontology#hasReservation">
+        <rdfs:domain rdf:resource="http://maison-elite.org/ontology#Customer"/>
+        <rdfs:range  rdf:resource="http://maison-elite.org/ontology#Reservation"/>
+    </owl:ObjectProperty>
+
+    <!-- Reservation atRestaurant Restaurant -->
+    <owl:ObjectProperty rdf:about="http://maison-elite.org/ontology#atRestaurant">
+        <rdfs:domain rdf:resource="http://maison-elite.org/ontology#Reservation"/>
+        <rdfs:range  rdf:resource="http://maison-elite.org/ontology#Restaurant"/>
+    </owl:ObjectProperty>
+
+    <!-- Chef earnedAward Award -->
+    <owl:ObjectProperty rdf:about="http://maison-elite.org/ontology#earnedAward">
+        <rdfs:domain rdf:resource="http://maison-elite.org/ontology#Chef"/>
+        <rdfs:range  rdf:resource="http://maison-elite.org/ontology#Award"/>
+    </owl:ObjectProperty>
+
+    <!-- Chef specialisesIn Cuisine (string-valued, modelled as annotation) -->
+
+
+    <!-- ═══════════════════════════════════════════════════════════
+         DATA PROPERTIES
+         ═══════════════════════════════════════════════════════════ -->
+
+    <owl:DatatypeProperty rdf:about="http://maison-elite.org/ontology#name">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://maison-elite.org/ontology#rating">
+        <rdfs:domain rdf:resource="http://maison-elite.org/ontology#Dish"/>
+        <rdfs:domain rdf:resource="http://maison-elite.org/ontology#Restaurant"/>
+        <rdfs:range  rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://maison-elite.org/ontology#price">
+        <rdfs:domain rdf:resource="http://maison-elite.org/ontology#Dish"/>
+        <rdfs:range  rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://maison-elite.org/ontology#location">
+        <rdfs:domain rdf:resource="http://maison-elite.org/ontology#Restaurant"/>
+        <rdfs:range  rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://maison-elite.org/ontology#cuisine">
+        <rdfs:domain rdf:resource="http://maison-elite.org/ontology#Restaurant"/>
+        <rdfs:domain rdf:resource="http://maison-elite.org/ontology#Chef"/>
+        <rdfs:range  rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://maison-elite.org/ontology#capacity">
+        <rdfs:domain rdf:resource="http://maison-elite.org/ontology#Restaurant"/>
+        <rdfs:range  rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://maison-elite.org/ontology#yearsExperience">
+        <rdfs:domain rdf:resource="http://maison-elite.org/ontology#Chef"/>
+        <rdfs:range  rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://maison-elite.org/ontology#specialty">
+        <rdfs:domain rdf:resource="http://maison-elite.org/ontology#Chef"/>
+        <rdfs:range  rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://maison-elite.org/ontology#nationality">
+        <rdfs:domain rdf:resource="http://maison-elite.org/ontology#Chef"/>
+        <rdfs:range  rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://maison-elite.org/ontology#isVegan">
+        <rdfs:domain rdf:resource="http://maison-elite.org/ontology#Dish"/>
+        <rdfs:range  rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://maison-elite.org/ontology#allergens">
+        <rdfs:domain rdf:resource="http://maison-elite.org/ontology#Dish"/>
+        <rdfs:range  rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://maison-elite.org/ontology#calories">
+        <rdfs:domain rdf:resource="http://maison-elite.org/ontology#Dish"/>
+        <rdfs:range  rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://maison-elite.org/ontology#reservationDate">
+        <rdfs:domain rdf:resource="http://maison-elite.org/ontology#Reservation"/>
+        <rdfs:range  rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://maison-elite.org/ontology#partySize">
+        <rdfs:domain rdf:resource="http://maison-elite.org/ontology#Reservation"/>
+        <rdfs:range  rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://maison-elite.org/ontology#tableNumber">
+        <rdfs:domain rdf:resource="http://maison-elite.org/ontology#Reservation"/>
+        <rdfs:range  rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://maison-elite.org/ontology#confirmed">
+        <rdfs:domain rdf:resource="http://maison-elite.org/ontology#Reservation"/>
+        <rdfs:range  rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://maison-elite.org/ontology#memberSince">
+        <rdfs:domain rdf:resource="http://maison-elite.org/ontology#Customer"/>
+        <rdfs:range  rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://maison-elite.org/ontology#totalVisits">
+        <rdfs:domain rdf:resource="http://maison-elite.org/ontology#Customer"/>
+        <rdfs:range  rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://maison-elite.org/ontology#origin">
+        <rdfs:domain rdf:resource="http://maison-elite.org/ontology#Ingredient"/>
+        <rdfs:range  rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://maison-elite.org/ontology#seasonal">
+        <rdfs:domain rdf:resource="http://maison-elite.org/ontology#Ingredient"/>
+        <rdfs:range  rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://maison-elite.org/ontology#year">
+        <rdfs:domain rdf:resource="http://maison-elite.org/ontology#Award"/>
+        <rdfs:range  rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://maison-elite.org/ontology#issuedBy">
+        <rdfs:domain rdf:resource="http://maison-elite.org/ontology#Award"/>
+        <rdfs:range  rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+
+
+    <!-- ═══════════════════════════════════════════════════════════
+         CLASSES
+         ═══════════════════════════════════════════════════════════ -->
+
+    <owl:Class rdf:about="http://maison-elite.org/ontology#Restaurant"/>
+    <owl:Class rdf:about="http://maison-elite.org/ontology#Menu"/>
+    <owl:Class rdf:about="http://maison-elite.org/ontology#Ingredient"/>
+    <owl:Class rdf:about="http://maison-elite.org/ontology#Award"/>
+
+    <!-- Chef hierarchy -->
+    <owl:Class rdf:about="http://maison-elite.org/ontology#Chef"/>
+    <owl:Class rdf:about="http://maison-elite.org/ontology#HeadChef">
+        <rdfs:subClassOf rdf:resource="http://maison-elite.org/ontology#Chef"/>
+    </owl:Class>
+    <owl:Class rdf:about="http://maison-elite.org/ontology#SousChef">
+        <rdfs:subClassOf rdf:resource="http://maison-elite.org/ontology#Chef"/>
+    </owl:Class>
+    <owl:Class rdf:about="http://maison-elite.org/ontology#PastryChef">
+        <rdfs:subClassOf rdf:resource="http://maison-elite.org/ontology#Chef"/>
+    </owl:Class>
+
+    <!-- Customer hierarchy -->
+    <owl:Class rdf:about="http://maison-elite.org/ontology#Customer"/>
+    <owl:Class rdf:about="http://maison-elite.org/ontology#VIPCustomer">
+        <rdfs:subClassOf rdf:resource="http://maison-elite.org/ontology#Customer"/>
+    </owl:Class>
+    <owl:Class rdf:about="http://maison-elite.org/ontology#RegularCustomer">
+        <rdfs:subClassOf rdf:resource="http://maison-elite.org/ontology#Customer"/>
+    </owl:Class>
+
+    <!-- Dish hierarchy -->
+    <owl:Class rdf:about="http://maison-elite.org/ontology#Dish"/>
+    <owl:Class rdf:about="http://maison-elite.org/ontology#Starter">
+        <rdfs:subClassOf rdf:resource="http://maison-elite.org/ontology#Dish"/>
+    </owl:Class>
+    <owl:Class rdf:about="http://maison-elite.org/ontology#MainCourse">
+        <rdfs:subClassOf rdf:resource="http://maison-elite.org/ontology#Dish"/>
+    </owl:Class>
+    <owl:Class rdf:about="http://maison-elite.org/ontology#Dessert">
+        <rdfs:subClassOf rdf:resource="http://maison-elite.org/ontology#Dish"/>
+    </owl:Class>
+
+    <!-- Menu hierarchy -->
+    <owl:Class rdf:about="http://maison-elite.org/ontology#DegustationMenu">
+        <rdfs:subClassOf rdf:resource="http://maison-elite.org/ontology#Menu"/>
+    </owl:Class>
+    <owl:Class rdf:about="http://maison-elite.org/ontology#ALaCarteMenu">
+        <rdfs:subClassOf rdf:resource="http://maison-elite.org/ontology#Menu"/>
+    </owl:Class>
+    <owl:Class rdf:about="http://maison-elite.org/ontology#SeasonalMenu">
+        <rdfs:subClassOf rdf:resource="http://maison-elite.org/ontology#Menu"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://maison-elite.org/ontology#Reservation"/>
+
+
+    <!-- ═══════════════════════════════════════════════════════════
+         INDIVIDUALS
+         ═══════════════════════════════════════════════════════════ -->
+
+    <!-- ── THE RESTAURANT ─────────────────────────────────────── -->
+
+    <owl:NamedIndividual rdf:about="http://maison-elite.org/ontology#MaisonElite">
+        <rdf:type rdf:resource="http://maison-elite.org/ontology#Restaurant"/>
+        <me:name>Maison Élite</me:name>
+        <me:location>Garden City, Cairo, Egypt</me:location>
+        <me:cuisine>French-Egyptian Fusion</me:cuisine>
+        <me:rating rdf:datatype="http://www.w3.org/2001/XMLSchema#float">4.8</me:rating>
+        <me:capacity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">80</me:capacity>
+        <me:employs rdf:resource="http://maison-elite.org/ontology#SofiaEsposito"/>
+        <me:employs rdf:resource="http://maison-elite.org/ontology#KarimMansour"/>
+        <me:employs rdf:resource="http://maison-elite.org/ontology#YukiTanaka"/>
+        <me:hasMenu rdf:resource="http://maison-elite.org/ontology#DegustationTasting"/>
+        <me:hasMenu rdf:resource="http://maison-elite.org/ontology#ALaCarte"/>
+        <me:hasMenu rdf:resource="http://maison-elite.org/ontology#SpringSeasonal"/>
+        <me:receivedAward rdf:resource="http://maison-elite.org/ontology#MichelinStar2024"/>
+        <me:receivedAward rdf:resource="http://maison-elite.org/ontology#Top50AfricaAward"/>
+    </owl:NamedIndividual>
+
+
+    <!-- ── INGREDIENTS ────────────────────────────────────────── -->
+
+    <owl:NamedIndividual rdf:about="http://maison-elite.org/ontology#BlackTruffle">
+        <rdf:type rdf:resource="http://maison-elite.org/ontology#Ingredient"/>
+        <me:name>Black Truffle</me:name>
+        <me:origin>Périgord, France</me:origin>
+        <me:seasonal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</me:seasonal>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://maison-elite.org/ontology#Saffron">
+        <rdf:type rdf:resource="http://maison-elite.org/ontology#Ingredient"/>
+        <me:name>Saffron</me:name>
+        <me:origin>Aswan, Egypt</me:origin>
+        <me:seasonal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</me:seasonal>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://maison-elite.org/ontology#WagyuBeef">
+        <rdf:type rdf:resource="http://maison-elite.org/ontology#Ingredient"/>
+        <me:name>A5 Wagyu Beef</me:name>
+        <me:origin>Miyazaki, Japan</me:origin>
+        <me:seasonal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</me:seasonal>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://maison-elite.org/ontology#FoieGras">
+        <rdf:type rdf:resource="http://maison-elite.org/ontology#Ingredient"/>
+        <me:name>Duck Foie Gras</me:name>
+        <me:origin>Gascony, France</me:origin>
+        <me:seasonal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</me:seasonal>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://maison-elite.org/ontology#NilePerch">
+        <rdf:type rdf:resource="http://maison-elite.org/ontology#Ingredient"/>
+        <me:name>Nile Perch</me:name>
+        <me:origin>Lake Victoria, Egypt</me:origin>
+        <me:seasonal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</me:seasonal>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://maison-elite.org/ontology#Burrata">
+        <rdf:type rdf:resource="http://maison-elite.org/ontology#Ingredient"/>
+        <me:name>Fresh Burrata</me:name>
+        <me:origin>Puglia, Italy</me:origin>
+        <me:seasonal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</me:seasonal>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://maison-elite.org/ontology#Lobster">
+        <rdf:type rdf:resource="http://maison-elite.org/ontology#Ingredient"/>
+        <me:name>Blue Lobster</me:name>
+        <me:origin>Brittany, France</me:origin>
+        <me:seasonal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</me:seasonal>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://maison-elite.org/ontology#LambRack">
+        <rdf:type rdf:resource="http://maison-elite.org/ontology#Ingredient"/>
+        <me:name>Egyptian Lamb Rack</me:name>
+        <me:origin>Sinai, Egypt</me:origin>
+        <me:seasonal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</me:seasonal>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://maison-elite.org/ontology#DarkChocolate">
+        <rdf:type rdf:resource="http://maison-elite.org/ontology#Ingredient"/>
+        <me:name>Valrhona Dark Chocolate</me:name>
+        <me:origin>Tain-l'Hermitage, France</me:origin>
+        <me:seasonal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</me:seasonal>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://maison-elite.org/ontology#Mango">
+        <rdf:type rdf:resource="http://maison-elite.org/ontology#Ingredient"/>
+        <me:name>Alphonso Mango</me:name>
+        <me:origin>Ismailia, Egypt</me:origin>
+        <me:seasonal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</me:seasonal>
+    </owl:NamedIndividual>
+
+
+    <!-- ── CHEFS ───────────────────────────────────────────────── -->
+
+    <owl:NamedIndividual rdf:about="http://maison-elite.org/ontology#SofiaEsposito">
+        <rdf:type rdf:resource="http://maison-elite.org/ontology#HeadChef"/>
+        <me:name>Sofia Esposito</me:name>
+        <me:nationality>Italian</me:nationality>
+        <me:cuisine>French-Italian</me:cuisine>
+        <me:specialty>Truffles &amp; Umami Elevation</me:specialty>
+        <me:yearsExperience rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">17</me:yearsExperience>
+        <me:earnedAward rdf:resource="http://maison-elite.org/ontology#BestChefAfrica2023"/>
+        <me:earnedAward rdf:resource="http://maison-elite.org/ontology#JamesBeardNomination2022"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://maison-elite.org/ontology#KarimMansour">
+        <rdf:type rdf:resource="http://maison-elite.org/ontology#SousChef"/>
+        <me:name>Karim Mansour</me:name>
+        <me:nationality>Egyptian</me:nationality>
+        <me:cuisine>Middle Eastern Fusion</me:cuisine>
+        <me:specialty>Spice Layering &amp; Slow Cooking</me:specialty>
+        <me:yearsExperience rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">9</me:yearsExperience>
+        <me:earnedAward rdf:resource="http://maison-elite.org/ontology#RisingStarChef2023"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://maison-elite.org/ontology#YukiTanaka">
+        <rdf:type rdf:resource="http://maison-elite.org/ontology#PastryChef"/>
+        <me:name>Yuki Tanaka</me:name>
+        <me:nationality>Japanese</me:nationality>
+        <me:cuisine>Japanese-French Pâtisserie</me:cuisine>
+        <me:specialty>Precision Pastry &amp; Texture Contrast</me:specialty>
+        <me:yearsExperience rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">11</me:yearsExperience>
+        <me:earnedAward rdf:resource="http://maison-elite.org/ontology#BestPastryMENA2024"/>
+    </owl:NamedIndividual>
+
+
+    <!-- ── DISHES — STARTERS ──────────────────────────────────── -->
+
+    <owl:NamedIndividual rdf:about="http://maison-elite.org/ontology#TruffleBurrata">
+        <rdf:type rdf:resource="http://maison-elite.org/ontology#Starter"/>
+        <me:name>Truffle &amp; Burrata</me:name>
+        <me:price rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">28.00</me:price>
+        <me:rating rdf:datatype="http://www.w3.org/2001/XMLSchema#float">4.9</me:rating>
+        <me:calories rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">320</me:calories>
+        <me:isVegan rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</me:isVegan>
+        <me:allergens>Dairy, Tree Nuts</me:allergens>
+        <me:preparedBy rdf:resource="http://maison-elite.org/ontology#SofiaEsposito"/>
+        <me:containsIngredient rdf:resource="http://maison-elite.org/ontology#BlackTruffle"/>
+        <me:containsIngredient rdf:resource="http://maison-elite.org/ontology#Burrata"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://maison-elite.org/ontology#FoieGrasTorchon">
+        <rdf:type rdf:resource="http://maison-elite.org/ontology#Starter"/>
+        <me:name>Foie Gras Torchon</me:name>
+        <me:price rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">34.00</me:price>
+        <me:rating rdf:datatype="http://www.w3.org/2001/XMLSchema#float">4.7</me:rating>
+        <me:calories rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">410</me:calories>
+        <me:isVegan rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</me:isVegan>
+        <me:allergens>Poultry, Gluten</me:allergens>
+        <me:preparedBy rdf:resource="http://maison-elite.org/ontology#SofiaEsposito"/>
+        <me:containsIngredient rdf:resource="http://maison-elite.org/ontology#FoieGras"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://maison-elite.org/ontology#SaffronLobsterBisque">
+        <rdf:type rdf:resource="http://maison-elite.org/ontology#Starter"/>
+        <me:name>Saffron Lobster Bisque</me:name>
+        <me:price rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">24.00</me:price>
+        <me:rating rdf:datatype="http://www.w3.org/2001/XMLSchema#float">4.6</me:rating>
+        <me:calories rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">280</me:calories>
+        <me:isVegan rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</me:isVegan>
+        <me:allergens>Shellfish, Dairy</me:allergens>
+        <me:preparedBy rdf:resource="http://maison-elite.org/ontology#KarimMansour"/>
+        <me:containsIngredient rdf:resource="http://maison-elite.org/ontology#Saffron"/>
+        <me:containsIngredient rdf:resource="http://maison-elite.org/ontology#Lobster"/>
+    </owl:NamedIndividual>
+
+
+    <!-- ── DISHES — MAIN COURSES ──────────────────────────────── -->
+
+    <owl:NamedIndividual rdf:about="http://maison-elite.org/ontology#WagyuTenderloin">
+        <rdf:type rdf:resource="http://maison-elite.org/ontology#MainCourse"/>
+        <me:name>A5 Wagyu Tenderloin</me:name>
+        <me:price rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">89.00</me:price>
+        <me:rating rdf:datatype="http://www.w3.org/2001/XMLSchema#float">5.0</me:rating>
+        <me:calories rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">720</me:calories>
+        <me:isVegan rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</me:isVegan>
+        <me:allergens>None</me:allergens>
+        <me:preparedBy rdf:resource="http://maison-elite.org/ontology#SofiaEsposito"/>
+        <me:containsIngredient rdf:resource="http://maison-elite.org/ontology#WagyuBeef"/>
+        <me:containsIngredient rdf:resource="http://maison-elite.org/ontology#BlackTruffle"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://maison-elite.org/ontology#LambRackMaison">
+        <rdf:type rdf:resource="http://maison-elite.org/ontology#MainCourse"/>
+        <me:name>Lamb Rack à la Maison</me:name>
+        <me:price rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">67.00</me:price>
+        <me:rating rdf:datatype="http://www.w3.org/2001/XMLSchema#float">4.8</me:rating>
+        <me:calories rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">680</me:calories>
+        <me:isVegan rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</me:isVegan>
+        <me:allergens>Gluten, Nuts</me:allergens>
+        <me:preparedBy rdf:resource="http://maison-elite.org/ontology#KarimMansour"/>
+        <me:containsIngredient rdf:resource="http://maison-elite.org/ontology#LambRack"/>
+        <me:containsIngredient rdf:resource="http://maison-elite.org/ontology#Saffron"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://maison-elite.org/ontology#NilePerchPapillote">
+        <rdf:type rdf:resource="http://maison-elite.org/ontology#MainCourse"/>
+        <me:name>Nile Perch en Papillote</me:name>
+        <me:price rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">54.00</me:price>
+        <me:rating rdf:datatype="http://www.w3.org/2001/XMLSchema#float">4.5</me:rating>
+        <me:calories rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">490</me:calories>
+        <me:isVegan rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</me:isVegan>
+        <me:allergens>Fish</me:allergens>
+        <me:preparedBy rdf:resource="http://maison-elite.org/ontology#KarimMansour"/>
+        <me:containsIngredient rdf:resource="http://maison-elite.org/ontology#NilePerch"/>
+        <me:containsIngredient rdf:resource="http://maison-elite.org/ontology#Saffron"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://maison-elite.org/ontology#TruffleLobsterRisotto">
+        <rdf:type rdf:resource="http://maison-elite.org/ontology#MainCourse"/>
+        <me:name>Truffle &amp; Lobster Risotto</me:name>
+        <me:price rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">76.00</me:price>
+        <me:rating rdf:datatype="http://www.w3.org/2001/XMLSchema#float">4.9</me:rating>
+        <me:calories rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">610</me:calories>
+        <me:isVegan rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</me:isVegan>
+        <me:allergens>Shellfish, Dairy, Gluten</me:allergens>
+        <me:preparedBy rdf:resource="http://maison-elite.org/ontology#SofiaEsposito"/>
+        <me:containsIngredient rdf:resource="http://maison-elite.org/ontology#BlackTruffle"/>
+        <me:containsIngredient rdf:resource="http://maison-elite.org/ontology#Lobster"/>
+    </owl:NamedIndividual>
+
+
+    <!-- ── DISHES — DESSERTS ──────────────────────────────────── -->
+
+    <owl:NamedIndividual rdf:about="http://maison-elite.org/ontology#ChocolateSouffle">
+        <rdf:type rdf:resource="http://maison-elite.org/ontology#Dessert"/>
+        <me:name>Valrhona Chocolate Soufflé</me:name>
+        <me:price rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">18.00</me:price>
+        <me:rating rdf:datatype="http://www.w3.org/2001/XMLSchema#float">4.9</me:rating>
+        <me:calories rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">380</me:calories>
+        <me:isVegan rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</me:isVegan>
+        <me:allergens>Dairy, Eggs, Gluten</me:allergens>
+        <me:preparedBy rdf:resource="http://maison-elite.org/ontology#YukiTanaka"/>
+        <me:containsIngredient rdf:resource="http://maison-elite.org/ontology#DarkChocolate"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://maison-elite.org/ontology#MangoSaffronTart">
+        <rdf:type rdf:resource="http://maison-elite.org/ontology#Dessert"/>
+        <me:name>Mango Saffron Tart</me:name>
+        <me:price rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">16.00</me:price>
+        <me:rating rdf:datatype="http://www.w3.org/2001/XMLSchema#float">4.8</me:rating>
+        <me:calories rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">310</me:calories>
+        <me:isVegan rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</me:isVegan>
+        <me:allergens>Gluten, Dairy</me:allergens>
+        <me:preparedBy rdf:resource="http://maison-elite.org/ontology#YukiTanaka"/>
+        <me:containsIngredient rdf:resource="http://maison-elite.org/ontology#Mango"/>
+        <me:containsIngredient rdf:resource="http://maison-elite.org/ontology#Saffron"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://maison-elite.org/ontology#TrufflePannaCotta">
+        <rdf:type rdf:resource="http://maison-elite.org/ontology#Dessert"/>
+        <me:name>Truffle Honey Panna Cotta</me:name>
+        <me:price rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">22.00</me:price>
+        <me:rating rdf:datatype="http://www.w3.org/2001/XMLSchema#float">4.6</me:rating>
+        <me:calories rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">290</me:calories>
+        <me:isVegan rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</me:isVegan>
+        <me:allergens>Dairy</me:allergens>
+        <me:preparedBy rdf:resource="http://maison-elite.org/ontology#YukiTanaka"/>
+        <me:containsIngredient rdf:resource="http://maison-elite.org/ontology#BlackTruffle"/>
+    </owl:NamedIndividual>
+
+
+    <!-- ── MENUS ───────────────────────────────────────────────── -->
+
+    <owl:NamedIndividual rdf:about="http://maison-elite.org/ontology#DegustationTasting">
+        <rdf:type rdf:resource="http://maison-elite.org/ontology#DegustationMenu"/>
+        <me:name>Degustation Tasting Menu</me:name>
+        <me:includes rdf:resource="http://maison-elite.org/ontology#TruffleBurrata"/>
+        <me:includes rdf:resource="http://maison-elite.org/ontology#FoieGrasTorchon"/>
+        <me:includes rdf:resource="http://maison-elite.org/ontology#WagyuTenderloin"/>
+        <me:includes rdf:resource="http://maison-elite.org/ontology#TruffleLobsterRisotto"/>
+        <me:includes rdf:resource="http://maison-elite.org/ontology#ChocolateSouffle"/>
+        <me:includes rdf:resource="http://maison-elite.org/ontology#TrufflePannaCotta"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://maison-elite.org/ontology#ALaCarte">
+        <rdf:type rdf:resource="http://maison-elite.org/ontology#ALaCarteMenu"/>
+        <me:name>À La Carte</me:name>
+        <me:includes rdf:resource="http://maison-elite.org/ontology#TruffleBurrata"/>
+        <me:includes rdf:resource="http://maison-elite.org/ontology#FoieGrasTorchon"/>
+        <me:includes rdf:resource="http://maison-elite.org/ontology#SaffronLobsterBisque"/>
+        <me:includes rdf:resource="http://maison-elite.org/ontology#WagyuTenderloin"/>
+        <me:includes rdf:resource="http://maison-elite.org/ontology#LambRackMaison"/>
+        <me:includes rdf:resource="http://maison-elite.org/ontology#NilePerchPapillote"/>
+        <me:includes rdf:resource="http://maison-elite.org/ontology#TruffleLobsterRisotto"/>
+        <me:includes rdf:resource="http://maison-elite.org/ontology#ChocolateSouffle"/>
+        <me:includes rdf:resource="http://maison-elite.org/ontology#MangoSaffronTart"/>
+        <me:includes rdf:resource="http://maison-elite.org/ontology#TrufflePannaCotta"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://maison-elite.org/ontology#SpringSeasonal">
+        <rdf:type rdf:resource="http://maison-elite.org/ontology#SeasonalMenu"/>
+        <me:name>Spring Harvest Menu</me:name>
+        <me:includes rdf:resource="http://maison-elite.org/ontology#SaffronLobsterBisque"/>
+        <me:includes rdf:resource="http://maison-elite.org/ontology#NilePerchPapillote"/>
+        <me:includes rdf:resource="http://maison-elite.org/ontology#LambRackMaison"/>
+        <me:includes rdf:resource="http://maison-elite.org/ontology#MangoSaffronTart"/>
+    </owl:NamedIndividual>
+
+
+    <!-- ── CUSTOMERS ─────────────────────────────────────────── -->
+
+    <owl:NamedIndividual rdf:about="http://maison-elite.org/ontology#LaylaHassan">
+        <rdf:type rdf:resource="http://maison-elite.org/ontology#VIPCustomer"/>
+        <me:name>Layla Hassan</me:name>
+        <me:memberSince>2019</me:memberSince>
+        <me:totalVisits rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">42</me:totalVisits>
+        <me:hasReservation rdf:resource="http://maison-elite.org/ontology#Res_LH_Feb14"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://maison-elite.org/ontology#AhmedAlRashid">
+        <rdf:type rdf:resource="http://maison-elite.org/ontology#VIPCustomer"/>
+        <me:name>Ahmed Al-Rashid</me:name>
+        <me:memberSince>2020</me:memberSince>
+        <me:totalVisits rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">27</me:totalVisits>
+        <me:hasReservation rdf:resource="http://maison-elite.org/ontology#Res_AA_Feb15"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://maison-elite.org/ontology#IsabellaRomano">
+        <rdf:type rdf:resource="http://maison-elite.org/ontology#VIPCustomer"/>
+        <me:name>Isabella Romano</me:name>
+        <me:memberSince>2018</me:memberSince>
+        <me:totalVisits rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">61</me:totalVisits>
+        <me:hasReservation rdf:resource="http://maison-elite.org/ontology#Res_IR_Feb16"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://maison-elite.org/ontology#JamesCarter">
+        <rdf:type rdf:resource="http://maison-elite.org/ontology#RegularCustomer"/>
+        <me:name>James Carter</me:name>
+        <me:memberSince>2023</me:memberSince>
+        <me:totalVisits rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</me:totalVisits>
+        <me:hasReservation rdf:resource="http://maison-elite.org/ontology#Res_JC_Feb20"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://maison-elite.org/ontology#MeiLin">
+        <rdf:type rdf:resource="http://maison-elite.org/ontology#RegularCustomer"/>
+        <me:name>Mei Lin</me:name>
+        <me:memberSince>2022</me:memberSince>
+        <me:totalVisits rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">12</me:totalVisits>
+        <me:hasReservation rdf:resource="http://maison-elite.org/ontology#Res_ML_Feb21"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://maison-elite.org/ontology#OmarKhalil">
+        <rdf:type rdf:resource="http://maison-elite.org/ontology#RegularCustomer"/>
+        <me:name>Omar Khalil</me:name>
+        <me:memberSince>2024</me:memberSince>
+        <me:totalVisits rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</me:totalVisits>
+        <me:hasReservation rdf:resource="http://maison-elite.org/ontology#Res_OK_Feb22"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://maison-elite.org/ontology#SophieDubois">
+        <rdf:type rdf:resource="http://maison-elite.org/ontology#VIPCustomer"/>
+        <me:name>Sophie Dubois</me:name>
+        <me:memberSince>2021</me:memberSince>
+        <me:totalVisits rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">19</me:totalVisits>
+        <me:hasReservation rdf:resource="http://maison-elite.org/ontology#Res_SD_Feb28"/>
+    </owl:NamedIndividual>
+
+
+    <!-- ── RESERVATIONS ───────────────────────────────────────── -->
+
+    <owl:NamedIndividual rdf:about="http://maison-elite.org/ontology#Res_LH_Feb14">
+        <rdf:type rdf:resource="http://maison-elite.org/ontology#Reservation"/>
+        <me:name>Layla Hassan — Valentine's Dinner</me:name>
+        <me:reservationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-02-14T20:00:00</me:reservationDate>
+        <me:partySize rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</me:partySize>
+        <me:tableNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">7</me:tableNumber>
+        <me:confirmed rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</me:confirmed>
+        <me:atRestaurant rdf:resource="http://maison-elite.org/ontology#MaisonElite"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://maison-elite.org/ontology#Res_AA_Feb15">
+        <rdf:type rdf:resource="http://maison-elite.org/ontology#Reservation"/>
+        <me:name>Ahmed Al-Rashid — Business Dinner</me:name>
+        <me:reservationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-02-15T19:30:00</me:reservationDate>
+        <me:partySize rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">6</me:partySize>
+        <me:tableNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">12</me:tableNumber>
+        <me:confirmed rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</me:confirmed>
+        <me:atRestaurant rdf:resource="http://maison-elite.org/ontology#MaisonElite"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://maison-elite.org/ontology#Res_IR_Feb16">
+        <rdf:type rdf:resource="http://maison-elite.org/ontology#Reservation"/>
+        <me:name>Isabella Romano — Anniversary</me:name>
+        <me:reservationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-02-16T21:00:00</me:reservationDate>
+        <me:partySize rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</me:partySize>
+        <me:tableNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</me:tableNumber>
+        <me:confirmed rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</me:confirmed>
+        <me:atRestaurant rdf:resource="http://maison-elite.org/ontology#MaisonElite"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://maison-elite.org/ontology#Res_JC_Feb20">
+        <rdf:type rdf:resource="http://maison-elite.org/ontology#Reservation"/>
+        <me:name>James Carter — Birthday</me:name>
+        <me:reservationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-02-20T19:00:00</me:reservationDate>
+        <me:partySize rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</me:partySize>
+        <me:tableNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">8</me:tableNumber>
+        <me:confirmed rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</me:confirmed>
+        <me:atRestaurant rdf:resource="http://maison-elite.org/ontology#MaisonElite"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://maison-elite.org/ontology#Res_ML_Feb21">
+        <rdf:type rdf:resource="http://maison-elite.org/ontology#Reservation"/>
+        <me:name>Mei Lin — Dinner for Two</me:name>
+        <me:reservationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-02-21T20:30:00</me:reservationDate>
+        <me:partySize rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</me:partySize>
+        <me:tableNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</me:tableNumber>
+        <me:confirmed rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</me:confirmed>
+        <me:atRestaurant rdf:resource="http://maison-elite.org/ontology#MaisonElite"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://maison-elite.org/ontology#Res_OK_Feb22">
+        <rdf:type rdf:resource="http://maison-elite.org/ontology#Reservation"/>
+        <me:name>Omar Khalil — Casual Dining</me:name>
+        <me:reservationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-02-22T18:30:00</me:reservationDate>
+        <me:partySize rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</me:partySize>
+        <me:tableNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">10</me:tableNumber>
+        <me:confirmed rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</me:confirmed>
+        <me:atRestaurant rdf:resource="http://maison-elite.org/ontology#MaisonElite"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://maison-elite.org/ontology#Res_SD_Feb28">
+        <rdf:type rdf:resource="http://maison-elite.org/ontology#Reservation"/>
+        <me:name>Sophie Dubois — Private Event</me:name>
+        <me:reservationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-02-28T19:00:00</me:reservationDate>
+        <me:partySize rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">10</me:partySize>
+        <me:tableNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">20</me:tableNumber>
+        <me:confirmed rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</me:confirmed>
+        <me:atRestaurant rdf:resource="http://maison-elite.org/ontology#MaisonElite"/>
+    </owl:NamedIndividual>
+
+
+    <!-- ── AWARDS ─────────────────────────────────────────────── -->
+
+    <owl:NamedIndividual rdf:about="http://maison-elite.org/ontology#MichelinStar2024">
+        <rdf:type rdf:resource="http://maison-elite.org/ontology#Award"/>
+        <me:name>Michelin Star</me:name>
+        <me:issuedBy>Guide Michelin</me:issuedBy>
+        <me:year rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2024</me:year>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://maison-elite.org/ontology#Top50AfricaAward">
+        <rdf:type rdf:resource="http://maison-elite.org/ontology#Award"/>
+        <me:name>Top 50 Restaurants — Africa &amp; Middle East</me:name>
+        <me:issuedBy>World's 50 Best</me:issuedBy>
+        <me:year rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2024</me:year>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://maison-elite.org/ontology#BestChefAfrica2023">
+        <rdf:type rdf:resource="http://maison-elite.org/ontology#Award"/>
+        <me:name>Best Chef — Africa</me:name>
+        <me:issuedBy>Gault et Millau</me:issuedBy>
+        <me:year rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2023</me:year>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://maison-elite.org/ontology#JamesBeardNomination2022">
+        <rdf:type rdf:resource="http://maison-elite.org/ontology#Award"/>
+        <me:name>James Beard Nomination — International</me:name>
+        <me:issuedBy>James Beard Foundation</me:issuedBy>
+        <me:year rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2022</me:year>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://maison-elite.org/ontology#RisingStarChef2023">
+        <rdf:type rdf:resource="http://maison-elite.org/ontology#Award"/>
+        <me:name>Rising Star Chef</me:name>
+        <me:issuedBy>Arab Culinary Academy</me:issuedBy>
+        <me:year rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2023</me:year>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://maison-elite.org/ontology#BestPastryMENA2024">
+        <rdf:type rdf:resource="http://maison-elite.org/ontology#Award"/>
+        <me:name>Best Pastry Chef — MENA</me:name>
+        <me:issuedBy>Middle East &amp; Africa Hospitality Awards</me:issuedBy>
+        <me:year rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2024</me:year>
+    </owl:NamedIndividual>
+
+</rdf:RDF>
